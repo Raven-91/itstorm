@@ -1,0 +1,169 @@
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>========================================================================================*/
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>=========================================================================================*/
+/*</CATALOG>====================================================================================================*/
+.filter {
+  @include flexbox(baseline, space-between);
+  margin-bottom: 40px;
+  gap: 30px;
+
+  @media screen and (max-width: 1219px) {
+    max-width: 960px;
+    margin: 0 auto 40px auto;
+  }
+
+  @media screen and (max-width: 629px) {
+    max-width: 460px;
+    flex-direction: column;
+  }
+
+  // filter__items
+  &__items{
+    @include flex;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    @media screen and (max-width: 629px) {
+      @include order(1);
+    }
+  }
+
+  // .filter__sorting
+  &__sorting {
+    @media screen and (max-width: 629px) {
+      @include order(2);
+    }
+  }
+}
+
+.filter-item {
+  padding: 8px 20px;
+  border-radius: 5px;
+  border: 2px solid $textSecondMainColor;
+  height: 37px;
+  box-sizing: border-box;
+  background: transparent;
+  @include flex;
+  align-items: center;
+  gap: 9px;
+  transition: 0.3s linear;
+
+  // .filter-item__text
+  &__text {
+    color: $textSecondMainColor;
+  }
+
+  // .filter-item__close
+  &__close {
+    @include flexbox(center, center);
+
+    svg {
+      line-height: 1;
+    }
+  }
+
+  &:hover {
+    border: 2px solid $textFirstMainColor;
+
+    .filter__text {
+      color: $textFirstMainColor;
+    }
+
+    .filter__close {
+      svg g line {
+        stroke: $textFirstMainColor;
+      }
+    }
+  }
+}
+
+.sorting {
+  width: 171px;
+  min-width: 171px;
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s linear;
+
+  &.open {
+    width: 257px;
+    min-width: 257px;
+
+    .sorting-head {
+      padding: 12px 23px;
+      border-radius: 5px 5px 0 0;
+      background: #B9D5FD;
+    }
+
+    .sorting-head__icon {
+      transform: rotate(180deg);
+    }
+
+    .sorting__body {
+      display: flex;
+    }
+  }
+
+
+  // .sorting__body
+  &__body {
+    display: none;
+    border-radius: 0 0 5px 5px;
+    border: 1.5px solid #B9D5FD;
+    padding: 5px 0;
+    background: #FFF;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+  }
+}
+
+.sorting-head {
+  @include flexbox(center, space-between);
+  padding: 0 0 12px 23px;
+  gap: 8px;
+  cursor: pointer;
+
+  // .sorting-head__icon
+  &__icon {
+    transition: 0.3s linear;
+  }
+}
+
+.sorting-item {
+  @include flexbox(center, space-between);
+  padding: 7px 23px;
+  @include anim(0.1s, 0);
+
+  &:hover {
+    background: #B9D5FD;
+
+    .sorting-item__text {
+      color: $textFirstMainColor;
+    }
+
+    .sorting-item__icon path {
+      fill: $textFirstMainColor;
+    }
+  }
+
+  // .sorting-item__text
+  &__text {
+    color: #BEBEBE;
+  }
+
+  &.selected {
+
+    .sorting-item__text {
+      color: $textFirstMainColor;
+    }
+
+    .sorting-item__icon {
+      margin-right: 2px;
+    }
+  }
+}

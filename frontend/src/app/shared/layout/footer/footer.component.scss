@@ -1,0 +1,140 @@
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>========================================================================================*/
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>=========================================================================================*/
+/*</FOOTER>=====================================================================================================*/
+.footer {
+  padding: 40px 0 54px 0;
+  background: #B9D5FD;
+
+  @media screen and (max-width: 1023px) {
+    padding: calc(3.68vw + 2.35px) 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 20px 0;
+  }
+
+  // .footer__container
+  &__container {
+    @include flexbox(flex-start, stretch);
+    flex-direction: column;
+  }
+
+  // .footer__navigation
+  &__navigation {
+    @include flexbox(center, space-between);
+    flex-direction: row;
+    gap: 40px;
+    margin-bottom: 40px;
+
+    @media screen and (max-width: 539px) {
+      gap: 20px;
+    }
+
+    @media screen and (max-width: 519px) {
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  // .footer__menu
+  &__menu {
+
+    & .menu {
+      // .menu__list
+      &__list {
+        @include flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      // .menu__item
+      &__item {
+        @media screen and (max-width: 419px) {
+          flex-basis: 33.33%;
+        }
+      }
+    }
+  }
+
+  // .footer__info
+  &__info {
+    @include grid;
+    grid-template-columns: 253px repeat(3, auto);
+    gap: 60px;
+    margin-bottom: 6px;
+
+    @media screen and (max-width: 969px) {
+      grid-template-columns: 200px repeat(3, auto);
+      gap: calc(23.53vw - 168px);
+    }
+
+    @media screen and (max-width: 799px) {
+      grid-template: repeat(2, auto) / repeat(2, 253px);
+      gap: 20px 60px;
+    }
+
+    @media screen and (max-width: 594px) {
+      grid-template: repeat(2, auto) / repeat(2, 240px);
+      gap: 20px 40px;
+    }
+
+    @media screen and (max-width: 519px) {
+      grid-template: repeat(4, auto) / repeat(1, 1fr);
+      gap: 20px;
+    }
+
+    & .info {
+      @include flex;
+      flex-direction: column;
+      gap: 10px;
+
+      // .info__title
+      &__title {
+        font-weight: 500;
+        line-height: 130%;
+        color: $textSecondMainColor;
+      }
+
+      // .info__text
+      &__text {
+        line-height: 130%;
+      }
+
+      // .info__action
+      &__action {
+
+        & .button {
+          width: 153px;
+          height: 36px;
+          padding: 10px;
+          font-size: 12px;
+          font-weight: 500;
+        }
+      }
+
+      // .info__icons
+      &__icons {
+        @include flex;
+        align-items: center;
+        gap: 12px;
+
+        a:hover svg path {
+          fill: $backgroundColor;
+          transition: 0.3s linear;
+        }
+      }
+    }
+  }
+
+  // .footer__rights
+  &__rights {
+    color: $textSecondMainColor;
+  }
+}
+
+/*</FOOTER>=====================================================================================================*/

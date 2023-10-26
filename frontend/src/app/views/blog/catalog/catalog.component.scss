@@ -1,0 +1,97 @@
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>========================================================================================*/
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>=========================================================================================*/
+/*</CATALOG>====================================================================================================*/
+.catalog {
+
+  // .catalog__title
+  &__title {
+    margin-bottom: 40px;
+
+    @media screen and (max-width: 1219px) {
+      text-align: center;
+    }
+  }
+
+  // .catalog__list
+  &__list {
+    @include grid;
+    grid-template-columns: repeat(4, 290px);
+    justify-content: space-between;
+    row-gap: 40px;
+    margin-bottom: 60px;
+
+    @media screen and (max-width: 1219px) {
+      grid-template: repeat(2, auto) / repeat(2, minmax(290px, 460px));
+      justify-content: center;
+      gap: 40px;
+    }
+
+    @media screen and (min-width: 895px) and (max-width: 909px) {
+      gap: 30px;
+    }
+
+    @media screen and (max-width: 894px) {
+      grid-template-rows: repeat(2, auto);
+      gap: 25px;
+    }
+
+    @media screen and (max-width: 629px) {
+      grid-template: repeat(4, auto) / minmax(290px, 460px);
+      gap: 20px;
+    }
+  }
+}
+
+.pagination {
+  @include flexbox(center, center);
+  gap: 40px;
+
+  // .pagination__arrow
+  &__arrow {
+    @include flex;
+    align-items: center;
+    cursor: pointer;
+    color: #B9D5FD;
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+      color: #BEBEBE;
+    }
+  }
+
+  // .pagination__pages
+  &__pages {
+    @include flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  // .pagination__page
+  &__page {
+    @include flex;
+    gap: 15px;
+
+    &:first-of-type {
+      .pagination__dots {
+        display: none;
+      }
+    }
+  }
+
+  // .pagination__number
+  &__number {
+    color: $textFirstMainColor;
+    font-size: 20px;
+    padding: 10px;
+
+    &.active {
+      color: #B9D5FD;
+    }
+  }
+}
+/*</CATALOG>====================================================================================================*/
+

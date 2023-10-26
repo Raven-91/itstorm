@@ -1,0 +1,83 @@
+<section class="registration">
+  <div class="registration__container container">
+    <div class="registration__title">Регистрация на сайте</div>
+    <div class="registration__content">
+      <form class="registration__form form" [formGroup]="signupForm">
+
+        <div class="form__item form-item">
+          <div class="form-item__field">
+            <input type="text" name="name" class="form-item__input" id="user-name" placeholder=" " formControlName="name">
+            <label for="user-name" class="form-item__placeholder">Ваше имя</label>
+          </div>
+          <div class="form-item__invalid invalid"
+               *ngIf="signupForm.get('name')?.invalid && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)">
+            <div class="invalid__message" *ngIf="signupForm.get('name')?.errors?.['required']">
+              Необходимо ввести ваше имя (например, Иван)
+            </div>
+            <div class="invalid__message" *ngIf="signupForm.get('name')?.errors?.['pattern']">
+              Необходимо вводить имя русскими буквами, начиная с заглавной
+            </div>
+          </div>
+        </div>
+
+        <div class="form__item form-item">
+          <div class="form-item__field">
+            <input type="email" name="email" class="form-item__input" id="email" placeholder=" "
+                   formControlName="email">
+            <label for="email" class="form-item__placeholder">Электронная почта</label>
+          </div>
+          <div class="form-item__invalid invalid"
+               *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+            <div class="invalid__message" *ngIf="signupForm.get('email')?.errors?.['required']">
+              Необходимо ввести вашу почту
+            </div>
+            <div class="invalid__message" *ngIf="signupForm.get('email')?.errors?.['pattern']">
+              Необходимо вводить латинскими буквами
+            </div>
+          </div>
+        </div>
+
+        <div class="form__item form-item">
+          <div class="form-item__field">
+            <input type="password" name="password" class="form-item__input" id="password" placeholder=" "
+                   formControlName="password">
+            <label for="password" class="form-item__placeholder">Пароль</label>
+          </div>
+          <div class="form-item__invalid invalid"
+               *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+            <div class="invalid__message" *ngIf="signupForm.get('password')?.errors?.['required']">
+              Необходимо ввести пароль
+            </div>
+            <div class="invalid__message" *ngIf="signupForm.get('password')?.errors?.['pattern']">
+              Пароль должен состоять из не менее 8 символов. При этом в пароле обязательно должна быть как минимум одна
+              заглавная и строчкая латинские буквы и число.
+            </div>
+          </div>
+        </div>
+
+        <div class="form__checkbox form-checkbox">
+          <div class="form-checkbox__field">
+            <input type="checkbox" id="agree" class="form-checkbox__input" formControlName="agree">
+            <label for="agree" class="form-checkbox__text">
+              Я принимаю <a routerLink="/agreement" fragment="terms" target="_blank" class="form-checkbox__link">условия
+              пользовательского соглашения</a> и даю
+              <a routerLink="/agreement" fragment="agree" target="_blank" class="form-checkbox__link">согласие на
+                обработку персональных данных.</a>
+            </label>
+          </div>
+        </div>
+
+        <div class="form__action">
+          <button class="button" [disabled]="signupForm.invalid" (click)="signup()"
+                  title="Необходимо заполнить форму, чтобы пройти регистрацию">Зарегистрироваться</button>
+        </div>
+        <div class="form__link-signup">
+          Уже есть аккаунт? <a routerLink="/login">Войдите</a>
+        </div>
+      </form>
+    </div>
+    <div class="registration__image">
+      <img src="../../../../assets/images/form/form-login-img.png" alt="Изображение" class="registration__img">
+    </div>
+  </div>
+</section>

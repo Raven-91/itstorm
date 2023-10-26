@@ -1,0 +1,100 @@
+<div class="popup" [class.active]="active" #popupWrapper>
+  <div class="popup__body">
+    <div class="popup__content">
+      <h2 class="popup__title common-title">
+        <ng-template [ngIf]="type === 'order'" [ngIfElse]="consultation">Заявка на услугу</ng-template>
+        <ng-template #consultation>Закажите бесплатную консультацию!</ng-template>
+      </h2>
+      <form class="popup__form form" [formGroup]="orderForm">
+
+        <div class="form__item form-item" [class.hide]="!service">
+          <div class="form-item__field">
+            <input type="text" name="name" class="form-item__input form-item__input-select" id="select" placeholder=" " autocomplete="off"
+                   formControlName="service" #select>
+            <label for="select" class="form-item__placeholder">Услуга</label>
+            <span class="form-item__arrow" [class.active]="openSelect"></span>
+            <div class="form-item__options" [class.active]="openSelect" #selectOptions id="selectOptions">
+              <div class="form-item__option" *ngFor="let option of options"
+                   (click)="selectOption($event)">{{option}}</div>
+            </div>
+          </div>
+          <div class="form-item__invalid invalid"
+               *ngIf="orderForm.get('serviceOption')?.invalid && (orderForm.get('serviceOption')?.dirty || orderForm.get('serviceOption')?.touched)">
+            <div class="invalid__message" *ngIf="orderForm.get('serviceOption')?.errors?.['required']">
+              Необходимо выбрать тип услуги
+            </div>
+          </div>
+        </div>
+
+        <div class="form__item form-item">
+          <div class="form-item__field">
+            <input type="text" name="name" class="form-item__input" id="name" placeholder=" " autocomplete="off"
+                   formControlName="name">
+            <label for="name" class="form-item__placeholder">Ваше имя</label>
+          </div>
+          <div class="form-item__invalid invalid"
+               *ngIf="orderForm.get('name')?.invalid && (orderForm.get('name')?.dirty || orderForm.get('name')?.touched)">
+            <div class="invalid__message" *ngIf="orderForm.get('name')?.errors?.['required']">
+              Необходимо ввести ваше имя (например, Иван)
+            </div>
+            <div class="invalid__message" *ngIf="orderForm.get('name')?.errors?.['pattern']">
+              Необходимо вводить имя русскими буквами, начиная с заглавной
+            </div>
+          </div>
+        </div>
+
+        <div class="form__item form-item">
+          <div class="form-item__field">
+            <input type="tel" name="name" class="form-item__input" id="phone" autocomplete="off" placeholder=" "
+                   matInput mask="+ 0 (000) 000-00-00" formControlName="phone">
+            <label for="phone" class="form-item__placeholder">Ваш номер телефона</label>
+          </div>
+          <div class="form-item__invalid invalid"
+               *ngIf="orderForm.get('phone')?.invalid && (orderForm.get('phone')?.dirty || orderForm.get('phone')?.touched)">
+            <div class="invalid__message" *ngIf="orderForm.get('phone')?.errors?.['required']">
+              Необходимо ввести ваш номер телефона
+            </div>
+            <div class="invalid__message" *ngIf="orderForm.get('phone')?.errors?.['pattern']">
+              Необходимо вводить номер телефона только цифрами
+            </div>
+          </div>
+        </div>
+        <div class="form__action">
+          <ng-template [ngIf]="type === 'order'" [ngIfElse]="consultationBtn">
+            <button type="button" class="button" [disabled]="orderForm.invalid" (click)="sendRequest()"
+                    title="Необходимо заполнить форму, чтобы оставить заявку">Оставить заявку</button>
+          </ng-template>
+          <ng-template #consultationBtn>
+            <button type="button" class="button" [disabled]="orderForm.invalid" (click)="sendRequest()"
+                    title="Необходимо заполнить форму, чтобы заказать консультацию">Заказать консультацию</button>
+          </ng-template>
+        </div>
+        <div class="form__error-message" *ngIf="errorMessageOpen">>Произошла ошибка при отправке формы, попробуйте еще раз.</div>
+      </form>
+    </div>
+    <div class="popup__close" (click)="modalClose()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0.935622" y1="0.649994" x2="12.9564" y2="12.6708" stroke="#BEBEBE" stroke-linecap="round"/>
+        <line x1="12.9236" y1="0.629775" x2="0.902769" y2="12.6506" stroke="#BEBEBE" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="popup popup_success" *ngIf="successMessageOpen">
+  <div class="popup__body">
+    <div class="popup__content">
+      <h2 class="popup__title common-title">Спасибо за вашу заявку!</h2>
+      <div class="popup__text">Мы свяжемся с вами при первой же возможности.</div>
+      <div class="popup__action">
+        <button type="button" class="button" (click)="modalClose()">Окей</button>
+      </div>
+    </div>
+    <div class="popup__close" (click)="modalClose()">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0.935622" y1="0.649994" x2="12.9564" y2="12.6708" stroke="#BEBEBE" stroke-linecap="round"/>
+        <line x1="12.9236" y1="0.629775" x2="0.902769" y2="12.6506" stroke="#BEBEBE" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="article" *ngFor="let article of articles">
+  <div class="article__image common-image"
+       style="background-image: url( {{serverStaticPath + article.image}} )"></div>
+  <a class="article__title small-title" routerLink="/article/{{article.url}}">{{article.title}}</a>
+  <div class="article__description">{{article.description}}</div>
+  <div class="article__action">
+    <a routerLink="/article/{{article.url}}">Читать дальше</a>
+  </div>
+  <div class="article__theme">{{article.category}}</div>
+</div>
+

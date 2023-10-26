@@ -1,0 +1,376 @@
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>========================================================================================*/
+@import "variables";
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>=========================
+@import "mixins";================================================================*/
+/*</REGISTRATION>===============================================================================================*/
+.registration {
+  padding: 253px 0 120px 0;
+
+  @media screen and (max-width: 1023px) {
+    padding: 213px 0 80px;
+  }
+
+  @media screen and (max-width: 979px) {
+    padding: 193px 0 80px;
+  }
+
+  @media screen and (max-width: 799px) {
+    padding: 183px 0 80px;
+  }
+
+  @media screen and (max-width: 640px) {
+    padding: 173px 0 80px;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 153px 0 60px;
+  }
+
+  // .registration__container
+  &__container {
+    @include grid;
+    grid-template-areas:
+      'title image'
+      'content image';
+    grid-template-columns: 435px 607px;
+    column-gap: 165px;
+
+    @media screen and (max-width: 1269px) {
+      grid-template-columns: 435px minmax(422px, 607px);
+      justify-content: space-around;
+      column-gap: 20px;
+    }
+
+    @media screen and (max-width: 1099px) {
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 905px) {
+      grid-template-areas:
+        'title'
+        'image'
+        'content';
+      grid-template-columns: 492px;
+      grid-template-rows: auto 320px auto;
+      gap: 30px;
+      justify-items: center;
+    }
+
+    @media screen and (max-width: 520px) {
+      grid-template-columns: minmax(290px, 100%);
+      grid-template-rows: auto 270px auto;
+      gap: 20px;
+    }
+  }
+
+  // .registration__title
+  &__title {
+    grid-area: title;
+    font-family: Lora, sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 130%;
+    color: $textSecondMainColor;
+    margin-bottom: 40px;
+
+    @media screen and (max-width: 639px) {
+      font-size: 30px;
+    }
+
+    @media screen and (max-width: 424px) {
+      font-size: 26px;
+    }
+
+    @media screen and (max-width: 905px) {
+      margin-bottom: 0;
+      text-align: center;
+    }
+  }
+
+  // .registration__content
+  &__content {
+    grid-area: content;
+    width: 100%;
+  }
+
+  // .registration__image
+  &__image {
+    grid-area: image;
+
+    @media screen and (max-width: 1059px) {
+      align-self: center;
+    }
+
+    @media screen and (max-width: 905px) {
+      width: 100%;
+      height: 100%;
+    }
+
+    .registration__img {
+      width: 100%;
+
+      @media screen and (max-width: 905px) {
+        object-position: center;
+        object-fit: cover;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.form {
+  @include flex;
+  flex-direction: column;
+  max-width: 422px;
+  width: 100%;
+
+  @media screen and (max-width: 905px) {
+    margin: 0 auto;
+  }
+
+  .form-item {
+    margin-top: 5px;
+
+    @media screen and (max-width: 905px) {
+      margin-top: 15px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &.hide {
+      display: none;
+    }
+
+    // form-item__field
+    &__field {
+      position: relative;
+    }
+
+    // .form-item__input
+    &__input {
+      width: 100%;
+      height: 53px;
+      padding: 17px 25px 17px 20px;
+      border-radius: 3px;
+      border: 2px solid $textSecondMainColor;
+      background: $backgroundColor;
+      box-sizing: border-box;
+      outline: none;
+
+      font-family: Montserrat, sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: $textSecondMainColor;
+
+      &:focus ~ .form-item__placeholder,
+      &:not(:placeholder-shown) ~ .form-item__placeholder {
+        font-size: 12px;
+        color: $textFirstMainColor;
+        top: 5px;
+        left: 20px;
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding: 20px 25px 12px 20px;
+      }
+
+      &.ng-invalid.ng-dirty,
+      &.ng-invalid.ng-touched {
+        border-color: #dc3545;
+      }
+
+      &:focus ~ .form-item__arrow,
+      &:not(:placeholder-shown) ~ .form-item__arrow {
+        //border-top: 7px solid $textFirstMainColor;
+        //border-left-color: $textFirstMainColor;
+      }
+    }
+
+    // .form-item__input-select
+    .form-item__input-select {
+      cursor: pointer;
+    }
+
+    // .form-item__placeholder
+    &__placeholder {
+      position: absolute;
+      top: calc((100% - 14px) / 2);
+      left: 20px;
+      line-height: 1 !important;
+      color: $textPlaceholderColor;
+      font-size: 14px;
+      transition: color 200ms, top 200ms, left 200ms;
+    }
+
+    // .form-item__icon
+    &__icon {
+      position: absolute;
+      top: calc((100% - 17.5px) / 2);
+      right: 5px;
+
+      svg {
+        cursor: pointer;
+        fill: $textSecondMainColor;
+
+        &.hide {
+          display: none;
+        }
+      }
+    }
+
+    // .form-item__arrow
+    &__arrow {
+      border: 6px solid transparent;
+      border-left: 7px solid $textPlaceholderColor;
+      cursor: pointer;
+
+      position: absolute;
+      top: calc((100% - 7px) / 2);
+      right: 10px;
+      transition: 0.2s linear;
+
+      &.active {
+        border-left-color: $textSecondMainColor;
+        transform: rotate(90deg);
+        top: calc((100% - 3px) / 2);
+      }
+    }
+
+    // .form-item__options
+    &__options {
+      display: none;
+      flex-direction: column;
+      background: $backgroundColor;
+      padding: 10px 0;
+      width: 100%;
+      position: absolute;
+      top: calc(100% - 10px);
+      left: 0;
+      z-index: 3;
+      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+      overflow: auto;
+      border-radius: 5px;
+
+      &.active {
+        display: flex;
+        transition: 0.3s display linear;
+      }
+    }
+
+    // .form-item__option
+    &__option {
+      padding: 20px;
+      color: $textFirstMainColor;
+      cursor: pointer;
+      transition: 0.2s ease;
+      border-radius: 5px;
+
+      &:hover {
+        background: $textSecondMainColor;
+        color: $backgroundColor;
+      }
+    }
+
+    // .form-item__invalid
+    &__invalid {
+      margin: 5px 0;
+    }
+
+    .invalid {
+      // .invalid__message
+      &__message {
+        display: block;
+        color: #dc3545
+      }
+    }
+  }
+
+  // .form__checkbox
+  &__checkbox {
+    margin: 10px 0 40px 0;
+  }
+
+  // .form-checkbox
+  .form-checkbox {
+
+    // .form-checkbox__field
+    &__field {
+      @include flex;
+      align-items: baseline;
+      gap: 5px;
+    }
+
+    // .form-checkbox__input
+    &__input {
+      width: 14px;
+      height: 14px;
+      position: relative;
+      top: 2px;
+    }
+
+    // .form-checkbox__text
+    &__text {
+      color: $textFirstMainColor;
+      font-size: 14px;
+      line-height: 130%;
+    }
+
+    // .form-checkbox__link
+    &__link {
+      color: $textSecondMainColor;
+      font-size: 14px;
+      line-height: 130%;
+      text-decoration-line: underline;
+      @include anim(0.3s, 0s);
+
+      &:hover {
+        color: $textFirstMainColor;
+      }
+    }
+  }
+
+  // .form__action
+  &__action {
+    margin-bottom: 10px;
+
+    .button {
+      width: 100%;
+    }
+  }
+
+  // .form__link-signup
+  &__link-signup {
+    font-size: 14px;
+    color: $textFirstMainColor;
+
+    a {
+      color: $textSecondMainColor;
+      @include anim(0.3s, 0s);
+
+      &:hover {
+        color: $textFirstMainColor;
+        font-weight: 500;
+      }
+    }
+  }
+
+  // .form__error-message
+  &__error-message {
+    margin: 10px auto 0;
+    color: #dc3545;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 130%;
+    max-width: 80%;
+
+    @media screen and (max-width: 500px) {
+      max-width: 100%;
+    }
+  }
+}
+
+/*</REGISTRATION>===============================================================================================*/

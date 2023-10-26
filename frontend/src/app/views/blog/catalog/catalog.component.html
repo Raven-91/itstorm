@@ -1,0 +1,37 @@
+<section class="catalog first-section">
+  <div class="container">
+
+    <h2 class="catalog__title common-title">Блог</h2>
+
+    <app-filter
+      [appliedFilters]="appliedFilters"
+      [categories]="categories"
+      (onSort)="sort($event)"
+      (onRemove)="removeAppliedFilter($event)">
+    </app-filter>
+
+    <app-article [articles]="articles" class="catalog__list"></app-article>
+
+    <div class="catalog__pagination pagination" *ngIf="pages.length > 1">
+      <div class="pagination__arrow pagination__arrow_prev"
+           [class.disabled]="activeParams.page ? activeParams.page === 1 : true"
+           (click)="openPrevPage()">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </div>
+      <div class="pagination__pages" id="pagination">
+        <a class="pagination__page" *ngFor="let page of pages">
+          <span class="pagination__number"
+                [class.active]="this.activeParams.page ? this.activeParams.page === page : (page === 1)"
+                (click)="openPage(page)">{{page}}</span>
+        </a>
+      </div>
+      <div class="pagination__arrow pagination__arrow_next"
+           [class.disabled]="activeParams.page ? activeParams.page === pages.length : false" (click)="openNextPage()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

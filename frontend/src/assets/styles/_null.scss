@@ -1,0 +1,96 @@
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>========================================================================================*/
+@import "variables";
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>=========================================================================================*/
+/*</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>=================================================================================*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: $minWidth + px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $backgroundColor;
+  color: $textFirstMainColor;
+  line-height: 1;
+  font-family: $fontFamily !important;
+  font-weight: $fontWeight;
+  font-size: $fontSize + px;
+  text-rendering: optimizeLegibility;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+
+  &.lock {
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
+  }
+}
+
+input,
+button,
+textarea {
+  font-family: $fontFamily;
+  font-size: inherit;
+}
+
+a {
+  font-family: $fontFamily;
+  color: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+/*</ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>==================================================================================*/

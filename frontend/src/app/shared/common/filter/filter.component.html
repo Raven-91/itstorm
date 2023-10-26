@@ -1,0 +1,48 @@
+<div class="filter" #filter>
+  <div class="filter__items" *ngIf="appliedFilters">
+    <div class="filter-item" *ngFor="let appliedFilter of appliedFilters">
+      <span class="filter-item__text">{{appliedFilter.name}}</span>
+      <a class="filter-item__close" (click)="removeSelectedCategory(appliedFilter.urlParam)">
+        <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_4979_586)">
+            <line x1="1.93553" y1="3.15002" x2="13.9563" y2="15.1708" stroke="#709FDC" stroke-linecap="round"/>
+            <line x1="13.9236" y1="3.12984" x2="1.90278" y2="15.1507" stroke="#709FDC" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_4979_586">
+              <rect width="16" height="16" fill="white" transform="translate(0 0.5)"/>
+            </clipPath>
+          </defs>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="filter__sorting sorting"
+       [class.open]="sortingOpen">
+    <div class="sorting__head sorting-head">
+      <span class="sorting-head__text">Фильтр</span>
+      <svg class="sorting-head__icon" width="20" height="21" viewBox="0 0 20 21" fill="none"
+           xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M10 14.5C9.41668 14.5 8.83335 14.275 8.39168 13.8334L2.95835 8.40003C2.71668 8.15837 2.71668 7.75837 2.95835 7.5167C3.20002 7.27503 3.60002 7.27503 3.84168 7.5167L9.27502 12.95C9.67502 13.35 10.325 13.35 10.725 12.95L16.1583 7.5167C16.4 7.27503 16.8 7.27503 17.0417 7.5167C17.2833 7.75837 17.2833 8.15837 17.0417 8.40003L11.6083 13.8334C11.1667 14.275 10.5833 14.5 10 14.5Z"
+          fill="#071739"/>
+      </svg>
+    </div>
+    <div class="sorting__body">
+      <div class="sorting__item sorting-item"
+           *ngFor="let category of categories"
+           [class.selected]="category.selected" (click)="selectCategoryItem(category.url, category.selected)">
+        <span class="sorting-item__text">{{category.name}}</span>
+        <svg class="sorting-item__icon" width="12" height="11" viewBox="0 0 12 11" fill="none"
+             xmlns="http://www.w3.org/2000/svg" *ngIf="!category.selected">
+          <path d="M11.12 4.904H6.656V0.511999H5.144V4.904H0.68V6.32H5.144V10.688H6.656V6.32H11.12V4.904Z"
+                fill="#BEBEBE"/>
+        </svg>
+        <svg class="sorting-item__icon" width="7" height="3" viewBox="0 0 7 3" fill="none"
+             xmlns="http://www.w3.org/2000/svg" *ngIf="category.selected">
+          <path d="M0.44 2.24H6.728V0.752H0.44V2.24Z" fill="#071739"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>

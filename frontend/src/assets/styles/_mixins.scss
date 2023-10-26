@@ -1,0 +1,71 @@
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>========================================================================================*/
+@import "variables";
+/*</ПОДКЛЮЧЕНИЕ ФАЙЛОВ>=========================================================================================*/
+/*</МИКСИНЫ>====================================================================================================*/
+@mixin container {
+  max-width: $containerWidth + px;
+  min-width: $minWidth + px;
+  margin: 0 auto;
+  padding: 0 ($containerPadding + px);
+}
+
+@mixin flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin flexbox($alignItemsValue, $justifyContentValue) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: $alignItemsValue;
+  -ms-flex-align: $alignItemsValue;
+  align-items: $alignItemsValue;
+  -webkit-box-pack: $justifyContentValue;
+  -ms-flex-pack: $justifyContentValue;
+  justify-content: $justifyContentValue;
+}
+
+@mixin inline-flex {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin order($val) {
+  -webkit-box-ordinal-group: ($val+1);
+  -ms-flex-order: $val;
+  order: $val;
+}
+
+@mixin grid {
+  display: -ms-grid;
+  display: grid;
+}
+
+@mixin gridCards($type: fit, $min: 280px, $max: 1fr, $gap: 30px) {
+  display: -ms-grid;
+  display: grid;
+  gap: $gap;
+  grid-template-columns: repeat(auto-#{$type}, minmax($min, $max));
+}
+
+@mixin anim($time, $delay) {
+  -webkit-transition: all $time ease $delay;
+  -o-transition: all $time ease $delay;
+  transition: all $time ease $delay;
+}
+
+@mixin rotate($deg) {
+  -webkit-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+@mixin scale($num) {
+  -webkit-transform: scale($num);
+  -ms-transform: scale($num);
+  transform: scale($num);
+}
+
+/*</МИКСИНЫ>====================================================================================================*/
